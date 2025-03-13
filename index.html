@@ -11,9 +11,12 @@
             padding: 20px;
             background-color: #f4f4f4;
             text-align: center;
+            transition: background-image 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
         }
         .container {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             max-width: 400px;
@@ -54,6 +57,9 @@
             font-weight: bold;
             color: #d9534f;
         }
+        .background-input {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -79,6 +85,11 @@
         <p class="payment-info" id="payment-info">Pilih metode pembayaran di atas.</p>
 
         <button class="button" onclick="confirmPayment()">Konfirmasi Pembayaran</button>
+
+        <div class="background-input">
+            <label for="bg-url">Masukkan Link Gambar Latar Belakang:</label>
+            <input type="text" id="bg-url" placeholder="Masukkan URL gambar" oninput="changeBackground()">
+        </div>
     </div>
 
     <script>
@@ -108,7 +119,16 @@
 
             window.location.href = waLink;
         }
+
+        function changeBackground() {
+            let url = document.getElementById("bg-url").value;
+            if (url) {
+                document.body.style.backgroundImage = `url('${url}')`;
+            } else {
+                document.body.style.backgroundImage = "none";
+            }
+        }
     </script>
 
 </body>
-                    </html>
+</html>
