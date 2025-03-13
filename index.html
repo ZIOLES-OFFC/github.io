@@ -9,11 +9,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            text-align: center;
-            transition: background-image 0.5s ease-in-out;
+            background-image: url('https://cdn.discordapp.com/attachments/1294820677466980463/1349659522876313622/IMG-20250309-WA0042.jpg?ex=67d3e7e1&is=67d29661&hm=b75cc2906b76dbd4ca4bf6b135f9a676e668cbdbd00226f35c98fde7a7e0d393&'); /* GANTI URL INI */
             background-size: cover;
             background-position: center;
+            transition: background-image 0.5s ease-in-out;
+            text-align: center;
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
@@ -57,9 +57,6 @@
             font-weight: bold;
             color: #d9534f;
         }
-        .background-input {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -86,10 +83,6 @@
 
         <button class="button" onclick="confirmPayment()">Konfirmasi Pembayaran</button>
 
-        <div class="background-input">
-            <label for="bg-url">Masukkan Link Gambar Latar Belakang:</label>
-            <input type="text" id="bg-url" placeholder="https://cdn.discordapp.com/attachments/1294820677466980463/1349659522876313622/IMG-20250309-WA0042.jpg?ex=67d3e7e1&is=67d29661&hm=b75cc2906b76dbd4ca4bf6b135f9a676e668cbdbd00226f35c98fde7a7e0d393&" oninput="changeBackground()">
-        </div>
     </div>
 
     <script>
@@ -113,20 +106,11 @@
                 return;
             }
 
-            let adminWhatsApp = "6282198427185"; // Format WA Indonesia
+            let adminWhatsApp = "6282198427185"; // Nomor admin WA diperbarui
             let message = `Halo Admin Zioles Store Murah, saya ingin konfirmasi pembayaran.\n\nMetode: ${method}\nJumlah: Rp${amount}\n\nMohon verifikasinya.`;
             let waLink = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(message)}`;
 
             window.location.href = waLink;
-        }
-
-        function changeBackground() {
-            let url = document.getElementById("bg-url").value;
-            if (url) {
-                document.body.style.backgroundImage = `url('${url}')`;
-            } else {
-                document.body.style.backgroundImage = "none";
-            }
         }
     </script>
 
