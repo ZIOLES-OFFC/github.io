@@ -3,116 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran - Zioles Store Murah</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-image: url('https://cdn.discordapp.com/attachments/1294820677466980463/1349659522876313622/IMG-20250309-WA0042.jpg?ex=67d3e7e1&is=67d29661&hm=b75cc2906b76dbd4ca4bf6b135f9a676e668cbdbd00226f35c98fde7a7e0d393&'); /* GANTI URL INI */
-            background-size: cover;
-            background-position: center;
-            transition: background-image 0.5s ease-in-out;
-            text-align: center;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #333;
-        }
-        .input-group {
-            margin: 15px 0;
-            text-align: left;
-        }
-        label {
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .button {
-            background: #28a745;
-            color: white;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .button:hover {
-            background: #218838;
-        }
-        .payment-info {
-            font-weight: bold;
-            color: #d9534f;
-        }
-    </style>
+    <title>Test Kamera</title>
 </head>
 <body>
-
-    <div class="container">
-        <h2>Pembayaran Zioles Store Murah</h2>
-        <p>Pilih metode pembayaran dan konfirmasi pembayaran Anda.</p>
-
-        <div class="input-group">
-            <label for="payment-method">Metode Pembayaran:</label>
-            <select id="payment-method" onchange="updatePaymentInfo()">
-                <option value="" disabled selected>Pilih metode</option>
-                <option value="Dana">Dana - 082162294322</option>
-                <option value="GoPay">GoPay - Hubungi Admin</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label for="amount">Jumlah Pembayaran (Rp):</label>
-            <input type="number" id="amount" placeholder="Masukkan jumlah" min="1000">
-        </div>
-
-        <p class="payment-info" id="payment-info">Pilih metode pembayaran di atas.</p>
-
-        <button class="button" onclick="confirmPayment()">Konfirmasi Pembayaran</button>
-
-    </div>
-
+    <h2>Akses Kamera</h2>
+    <video id="kamera" autoplay playsinline></video>
+    <button onclick="startCamera()">Mulai Kamera</button>
     <script>
-        function updatePaymentInfo() {
-            let method = document.getElementById("payment-method").value;
-            let info = document.getElementById("payment-info");
-
-            if (method === "Dana") {
-                info.innerHTML = "Transfer ke Dana: <strong>082162294322</strong> lalu konfirmasi pembayaran.";
-            } else if (method === "GoPay") {
-                info.innerHTML = "Hubungi admin untuk pembayaran melalui GoPay.";
-            }
-        }
-
-        function confirmPayment() {
-            let method = document.getElementById("payment-method").value;
-            let amount = document.getElementById("amount").value;
-
-            if (!method || amount < 1000) {
-                alert("Pilih metode pembayaran dan masukkan jumlah yang valid.");
-                return;
-            }
-
-            let adminWhatsApp = "6282198427185"; // Nomor admin WA diperbarui
-            let message = `Halo Admin Zioles Store Murah, saya ingin konfirmasi pembayaran.\n\nMetode: ${method}\nJumlah: Rp${amount}\n\nMohon verifikasinya.`;
-            let waLink = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(message)}`;
-
-            window.location.href = waLink;
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    document.getElementById('kamera').srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.log("Gagal mengakses kamera:", error);
+                });
         }
     </script>
-
 </body>
 </html>
